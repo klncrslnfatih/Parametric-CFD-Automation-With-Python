@@ -3,7 +3,7 @@ A script that automates parametric analysis on Fluent
 
 ![automation-example](https://github.com/klncrslnfatih/Parametric-CFD-Automation-With-Python/assets/80931164/7990aae1-55a1-4c0f-abdb-c2a618b1fba3)
 
-With Parametric-CFD-Automation-with-Python, which I used in my undergraduate graduation project, parametric analyses can be performed locally and in HPC much less costly.
+In my undergraduate graduation project, I used the Parametric-CFD-Automation-With-Python. With this program parametric analyses can be performed locally and in HPC much less costly.
 This program takes data from Excel and creates journal files and folders in accordance with different parameters. It runs Fluent via the Commander and performs analyses locally. Saves-reports analysis results and creates cl-alpha and cd-alpha graphs via matplotlib. Performs the operations via TUI in a very short time instead of hours with the GUI. Additionally contains alternative TUI scripts for different types of turbulence models. Also it creates a merged file to perform analyses compatible with HPC (High Performance Computing). I would like to thank Rıdvan Taşcıoğlu, my industrial advisor, who helped me create the program.
 
 
