@@ -1,0 +1,56 @@
+#Steady or Transient
+################################################
+/define/models/steady? y
+
+
+/define/models/unsteady-2nd-order? y
+/solve/set/transient-controls\time-step-size {params['time-step-size']}
+/solve/set/transient-controls\number-of-time-steps {params['number-of-time-steps']}
+/solve/set/transient-controls\max-iterations-per-time-step {params['max-iterations-per-time-step']}
+################################################
+
+
+#Viscous Models
+################################################
+#k-w
+/define/models/viscous/kw-sst? y
+/define/boundary-conditions/velocity-inlet inlet-velocity y y n {params['inlet_velocity']} n 0 n 1.0 n 0.0 n n y 5 10
+/define/boundary-conditions/pressure-outlet outlet-pressure y n 0 n y n n y 5 10 y n n
+/define/boundary-conditions/wall wall n n n n 0 n 0.5
+
+#spalart-allmaras
+/define/models/viscous/spalart-allmaras? y
+/define/boundary-conditions/velocity-inlet inlet-velocity y y n {params['inlet_velocity']} n 0 n 1.0 n 0.0 n n y n 10
+/define/boundary-conditions/pressure-outlet outlet-pressure y n 0 n y n n y y 10 y n n
+/define/boundary-conditions/wall wall n n n n 0 n 0.5
+
+#ke-rng
+/define/models/viscous/ke-rng? y
+/define/boundary-conditions/velocity-inlet inlet-velocity y y n {params['inlet_velocity']} n 0 n 1.0 n 0.0 n n y 0.05 10
+/define/boundary-conditions/pressure-outlet outlet-pressure y n 0 n y n n y 0.05 10 y n n
+/define/boundary-conditions/wall wall n n n 0 n 0.5
+
+#ke-standard
+/define/models/viscous/ke-standard? y
+/define/boundary-conditions/velocity-inlet inlet-velocity y y n {params['inlet_velocity']} n 0 n 1.0 n 0.0 n n y 0.05 10
+/define/boundary-conditions/pressure-outlet outlet-pressure y n 0 n y n n y 0.05 10 y n n
+/define/boundary-conditions/wall wall n n n 0 n 0.5
+
+#transition-sst
+/define/models/viscous/transition-sst? y
+/define/boundary-conditions/velocity-inlet inlet-velocity y y n {params['inlet_velocity']} n 0 n 1.0 n 0.0 n n y 1 0.05 10
+/define/boundary-conditions/pressure-outlet outlet-pressure y n 0 n y n n y n 1 0.05 10 y n n
+/define/boundary-conditions/wall wall n n n 0 n 0.5
+
+#laminar
+/define/models/viscous/laminar? y
+/define/boundary-conditions/velocity-inlet inlet-velocity y y n {params['inlet_velocity']} n 0 n 1.0 n 0.0
+/define/boundary-conditions/pressure-outlet outlet-pressure y n 0 n y y n n
+/define/boundary-conditions/wall wall n n
+
+#inviscid
+/define/models/viscous/inviscid? y
+/define/boundary-conditions/velocity-inlet inlet-velocity y y n {params['inlet_velocity']} n 0 n 1.0 n 0.0
+/define/boundary-conditions/pressure-outlet outlet-pressure y n 0 n y y n n
+/define/boundary-conditions/wall wall
+################################################

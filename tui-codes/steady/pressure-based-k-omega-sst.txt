@@ -1,0 +1,33 @@
+;{aoa_param}
+/file/read-case/"{params['case_folder_name']}"
+/mesh/check
+/mesh/repair-improve/repair
+/mesh/check
+/mesh/scale/ {params['scale_param']} {params['scale_param']}
+/mesh/check
+/mesh/quality
+/define/models/solver/pressure-based y
+/solve/set/gradient-scheme n n
+/define/models/viscous/kw-sst? y
+/define/boundary-conditions/velocity-inlet inlet-velocity y y n {params['inlet_velocity']} n 0 n {velocity_x} n {velocity_y} n n y 5.0 10.0
+/define/boundary-conditions/pressure-outlet outlet-pressure y n 0 n y n n y 5.0 10.0 y n n
+/report/reference-values/area 0.1
+/report/reference-values/density 1.225
+/report/reference-values/depth 1
+/report/reference-values/enthalpy 0
+/report/reference-values/length 0.101
+/report/reference-values/pressure 101325
+/report/reference-values/temperature 288.16
+/report/reference-values/velocity {params['inlet_velocity']}
+/report/reference-values/viscosity 1.7894e-05
+/solve/set p-v-coupling 24
+/solve/set p-v-controls {params['courant_number']} 0.5 0.5
+/solve/report-definitions/add Cl lift force-vector -{velocity_y} {velocity_x} average-over 1 pe-zone? n thread-names wall () q
+/solve/report-definitions/add Cd drag force-vector {velocity_x} {velocity_y} average-over 1 pe-zone? n thread-names wall () q
+/solve/report-files/add Cl frequency-of iteration frequency 1 file-name "{folder_path}\{aoa_param}-cl.out" report-defs Cl () q
+/solve/report-files/add Cd frequency-of iteration frequency 1 file-name "{folder_path}\{aoa_param}-cd.out" report-defs Cd () q
+/solve/monitors/residual/convergence-criteria {params['convergence_param']} {params['convergence_param']} {params['convergence_param']} {params['convergence_param']} {params['convergence_param']}
+/solve/initialize/hyb-initialization
+/solve/iterate {params['iteration_param']}
+/file/write-case-data "{folder_path}\{aoa_param}.cas.h5"
+/exit
