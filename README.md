@@ -1,4 +1,4 @@
-# FLUENT-Automation-Script
+# Parametric-CFD-Automation-With-Python
 A script that automates parametric analysis on Fluent
 
 ![automation-example](https://github.com/klncrslnfatih/Parametric-CFD-Automation-With-Python/assets/80931164/7990aae1-55a1-4c0f-abdb-c2a618b1fba3)
